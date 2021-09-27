@@ -1,3 +1,4 @@
+
 class Problem:
     # There is a chance that we might need to pass in the objects as the husband and wives
     def __init__(self, initial, goal=None):
@@ -5,7 +6,6 @@ class Problem:
         # T
         self.initial = initial  # the initial state of the entire program
         self.goal = goal  # The goal is to get everyone into the other side of the river
-        print("Hello world")
 
     def actions(self, state):
         # This will return the actions that can be executred in the given state. The result would be a list

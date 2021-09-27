@@ -1,3 +1,5 @@
+
+
 class Node:
     # contains a pointer to the parent. If a state is arrived at two paths, then there are two nodes with the same state
 
