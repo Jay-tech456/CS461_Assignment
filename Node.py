@@ -8,6 +8,7 @@ class Node:
         self.parent = parent
         self.action = action
         self.path_cost = path_cost
+        self.depth = 0
         if parent:
             self.depth = parent.depth + 1
 
@@ -23,12 +24,12 @@ class Node:
 
         # List the nodes reachable in one step from this node.
 
-        return [self.child_node(problem, action) for action in problem.action(self.state)]
+        return [self.child_node(problem, action) for action in problem.actions(self.state)]
 
     def child_node(self, problem, action):
         # given an action, this method returns that immediate neighbour that can be reached with theat action
         next_sate = problem.result(self.state, action)
-        next_node = Node(next_sate, self, action, problem.path_cost(self.path_cost, self.sate, action, next_sate))
+        next_node = Node(next_sate, self, action, problem.path_cost(self.path_cost, self.state, action, next_sate))
         return next_node
 
     def solution(self):
@@ -42,4 +43,18 @@ class Node:
             path_back.append(node)
             node = node.parent
         return list(reversed((path_back)))
+    # We want for a queue of nodes in breadth_first_graph_search or
+    # astar_search to have no duplicated states, so we treat nodes
+    # with the same state as equal. [Problem: this may not be what you
+    # want in other contexts.]
+
+    def __eq__(self, other):
+        return isinstance(other, Node) and self.state == other.state
+
+    def __hash__(self):
+        # We use the hash value of the state
+        # stored in the node instead of the node
+        # object itself to quickly search a node
+        # with the same state in a Hash Table
+        return hash(self.state)
 

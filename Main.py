@@ -1,3 +1,5 @@
+from collections import deque
+
 from Problem import Problem
 from Node import Node
 
@@ -15,11 +17,14 @@ def depth_first_graph_search(problem):
     print("frontier " + str(frontier))
 
     explored = set()
+
     while frontier:
         node = frontier.pop()
+        print("Here is the node in the beginning of the loop " + str(node))
 
             # Should return false initially
         print(problem.goal_test(node.state))
+        print(node.state)
         if problem.goal_test(node.state):
             return node
         explored.add(node.state)
@@ -29,9 +34,15 @@ def depth_first_graph_search(problem):
     return None
 
 
+
 def main():
-    p = Problem("H1H2W1W2", None)
+    p = Problem("H1 W1", None)
     depth_first_graph_search(p)
+    solution = depth_first_graph_search(p)
+    if(solution == None):
+        print("No PATHS FOUND")
+    else:
+        print(solution)
 
 
 main()
