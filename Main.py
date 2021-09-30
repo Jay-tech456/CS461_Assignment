@@ -20,23 +20,19 @@ def depth_first_graph_search(problem):
 
     while frontier:
         node = frontier.pop()
-        print("Here is the node in the beginning of the loop " + str(node))
-
-            # Should return false initially
-        print(problem.goal_test(node.state))
-        print(node.state)
         if problem.goal_test(node.state):
             return node
+
+        print("Here is the node.state" + str(node.state))
         explored.add(node.state)
         print(explored)                 # Should print out the initial string "H1H2W1W2", and then hits the extend
         frontier.extend(child for child in node.expand(problem) if child.state not in explored and child not in frontier)
-    print("end of the while loop")
     return None
 
 
 
 def main():
-    p = Problem("H1 W1", None)
+    p = Problem("H1,W1", None)
     depth_first_graph_search(p)
     solution = depth_first_graph_search(p)
     if(solution == None):

@@ -59,7 +59,7 @@ class Problem:
         many actions, consider yielding them one at a time in an
         iterator, rather than building them all at once."""
 
-        b = state.split(" ")
+        b = state.split(",")
         print("Here is the state that is being passed in " + str(state))
         print("Here is B " + str(b))
         a = []
@@ -67,22 +67,28 @@ class Problem:
         while i < len(b):                       # O(n) W1H1
             if i + 1 > (len(b) - 1):
                 break
-            a.append((b[i] + b[i+1]))
+            a.append((b[i] + " " + b[i+1]))
             i += 1
         for count in b:
             a.append(count)
-            print( "Here is a " + str(a))
+        print( "Here is a " + str(a))
         return a
 
     def result(self, state, action):
         """Return the state that results from executing the given
         action in the given state. The action must be one of
         self.actions(state)."""
-        count = 0
-        a = action[count]
-        state = a
-        count += 1
-        return state
+        a = action.split(" ")
+        b = state.split(",")
+        print("Hello world ")
+        print(" Here is A " + str(a))
+        print(" Here is B " + str(b))
+
+        for count in range(len(a)):
+            b.remove(a[count])
+
+        print(b)
+        return b
 
     def goal_test(self, state):
         """Return True if the state is a goal. The default method compares the
