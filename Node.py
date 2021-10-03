@@ -1,5 +1,7 @@
 
-
+# Manjesh Prasad
+# breadth_first_tree_search
+# Assignment 4
 class Node:
     # contains a pointer to the parent. If a state is arrived at two paths, then there are two nodes with the same state
 
@@ -30,10 +32,12 @@ class Node:
         # given an action, this method returns that immediate neighbour that can be reached with theat action
         next_sate = problem.result(self.state, action)
         next_node = Node(next_sate, self, action, problem.path_cost(self.path_cost, self.state, action, next_sate))
+
         return next_node
 
     def solution(self):
         # retuns the sequence of actions required to reach this node from the root node
+
         return [node.action for node in self.path()[1:]]
 
     def path(self):
@@ -41,20 +45,12 @@ class Node:
         node, path_back = self, []
         while node:
             path_back.append(node)
+
             node = node.parent
         return list(reversed((path_back)))
-    # We want for a queue of nodes in breadth_first_graph_search or
-    # astar_search to have no duplicated states, so we treat nodes
-    # with the same state as equal. [Problem: this may not be what you
-    # want in other contexts.]
+
 
     def __eq__(self, other):
         return isinstance(other, Node) and self.state == other.state
 
-    def __hash__(self):
-        # We use the hash value of the state
-        # stored in the node instead of the node
-        # object itself to quickly search a node
-        # with the same state in a Hash Table
-        return hash(self.state)
 

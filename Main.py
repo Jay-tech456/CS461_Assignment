@@ -1,3 +1,7 @@
+# Manjesh Prasad
+# breadth_first_tree_search
+# Assignment 4
+
 from collections import deque
 
 from Problem import Problem
@@ -5,32 +9,24 @@ from Node import Node
 
 
 def breadth_first_tree_search(problem):
-    """
-    [Figure 3.7]
-    Search the shallowest nodes in the search tree first.
-    Search through the successors of a problem to find a goal.
-    The argument frontier should be an empty queue.
-    Repeats infinitely in case of loops.
-    """
-
+    print(problem.initial)
     frontier = deque([Node(problem.initial)])  # FIFO queue
-
     while frontier:
         node = frontier.popleft()
-        if problem.goal_test(node.state):
+        if problem.goal_test(node.state):                   # if node == goal, then return the node
             return node
         frontier.extend(node.expand(problem))
     return None
 
-
-
 def main():
-    p = Problem("H1,W1,H2,W2", None)
+    p = Problem("H1,W1,H2,W2,H3,W3", None)
     solution = breadth_first_tree_search(p)
-    if(solution == None):
+    if solution == None:
         print("No PATHS FOUND")
     else:
-        print(solution)
+        for count in solution.solution():
+            print(count)
+        print(solution.depth)
 
 
 main()
