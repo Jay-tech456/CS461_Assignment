@@ -20,8 +20,7 @@ def breadth_first_tree_search(problem):
 
 def main():
     p = Problem("H1,W1,H2,W2,H3,W3", None)
-    solution = breadth_first_tree_search(p)
-    if solution == None:
+    if (solution := breadth_first_tree_search(p)) == None:
         print("No PATHS FOUND")
     else:
         for count in solution.solution():
